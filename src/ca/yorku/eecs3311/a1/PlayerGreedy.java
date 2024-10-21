@@ -97,7 +97,7 @@ public class PlayerGreedy {
     private void copyBoard(OthelloBoard original, OthelloBoard copy) {
         for (int row = 0; row < Othello.DIMENSION; row++) {            // Loop through each row of the board
             for (int col = 0; col < Othello.DIMENSION; col++) {        // Loop through each column of the board
-                copy.board[row][col] = original.get(row, col);         // Copy the value from original to copy
+                copy.getBoard()[row][col] = original.get(row, col);         // Copy the value from original to copy
             }
         }
     }

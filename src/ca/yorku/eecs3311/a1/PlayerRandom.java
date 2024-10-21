@@ -63,7 +63,7 @@ public class PlayerRandom {
     private void copyBoard(OthelloBoard src, OthelloBoard dest) {
         for (int i = 0; i < src.getDimension(); i++) {                   	// Loop through each row
             for (int j = 0; j < src.getDimension(); j++) {               	// Loop through each column
-                dest.board[i][j] = src.get(i, j);							// Copy each cell value from source to destination
+                dest.getBoard()[i][j] = src.get(i, j);							// Copy each cell value from source to destination
             }
         }
     }

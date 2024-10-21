@@ -17,19 +17,19 @@ public class OthelloBoard {
 	
 	public static final char EMPTY = ' ', P1 = 'X', P2 = 'O', BOTH = 'B';
 	private int dim = 8;
-	char[][] board;
+	private char[][] board;
 
 	public OthelloBoard(int dim) {
 		this.dim = dim;
-		board = new char[this.dim][this.dim];
+		setBoard(new char[this.dim][this.dim]);
 		for (int row = 0; row < this.dim; row++) {
 			for (int col = 0; col < this.dim; col++) {
-				this.board[row][col] = EMPTY;
+				this.getBoard()[row][col] = EMPTY;
 			}
 		}
 		int mid = this.dim / 2;
-		this.board[mid - 1][mid - 1] = this.board[mid][mid] = P1;
-		this.board[mid][mid - 1] = this.board[mid - 1][mid] = P2;
+		this.getBoard()[mid - 1][mid - 1] = this.getBoard()[mid][mid] = P1;
+		this.getBoard()[mid][mid - 1] = this.getBoard()[mid - 1][mid] = P2;
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class OthelloBoard {
 	 */
 	public char get(int row, int col) {
 	    if (validCoordinate(row, col)) {
-	        return this.board[row][col];
+	        return this.getBoard()[row][col];
 	    }
 	    return EMPTY;
 	}
@@ -186,7 +186,7 @@ public class OthelloBoard {
 	    do {
 	        row -= drow;                                                      // Move back
 	        col -= dcol;
-	        this.board[row][col] = player;                                    // Flip the token to player's token
+	        this.getBoard()[row][col] = player;                                    // Flip the token to player's token
 	        flipped++;                                                        // Increment flip count
 	    } while (get(row - drow, col - dcol) == opponent);                    // Continue flipping until no opponent tokens
 
@@ -263,7 +263,7 @@ public class OthelloBoard {
 	    
 	    for (int row = 0; row < this.dim; row++) {
 	        for (int col = 0; col < this.dim; col++) {
-	            if (this.board[row][col] != EMPTY) {                           // Skip non-empty squares
+	            if (this.getBoard()[row][col] != EMPTY) {                           // Skip non-empty squares
 	                continue;
 	            }
 
@@ -346,7 +346,7 @@ public class OthelloBoard {
 	    // If the move is valid, place the player's token at the specified position
 	    
 	    if (validMove) {
-	        this.board[row][col] = player;                                      // Update the board with the player's token
+	        this.getBoard()[row][col] = player;                                      // Update the board with the player's token
 	    }
 
 	    return validMove;                                                       // Return whether the move was valid
@@ -363,7 +363,7 @@ public class OthelloBoard {
 	    int count = 0;
 	    for (int row = 0; row < this.dim; row++) {
 	        for (int col = 0; col < this.dim; col++) {
-	            if (this.board[row][col] == player) {
+	            if (this.getBoard()[row][col] == player) {
 	                count++;
 	            }
 	        }
@@ -395,7 +395,7 @@ public class OthelloBoard {
 		for (int row = 0; row < this.dim; row++) {
 			s += row + "|";
 			for (int col = 0; col < this.dim; col++) {
-				s += this.board[row][col] + "|";
+				s += this.getBoard()[row][col] + "|";
 			}
 			s += row + "\n";
 
@@ -426,7 +426,7 @@ public class OthelloBoard {
 		System.out.println("getCount(P2)=" + ob.getCount(P2));
 		for (int row = 0; row < ob.dim; row++) {
 			for (int col = 0; col < ob.dim; col++) {
-				ob.board[row][col] = P1;
+				ob.getBoard()[row][col] = P1;
 			}
 		}
 		System.out.println(ob.toString());
@@ -443,7 +443,7 @@ public class OthelloBoard {
 		for (int row = 0; row < ob.dim; row++) {
 			for (int col = 0; col < ob.dim; col++) {
 				if (row == 0 || col == 0) {
-					ob.board[row][col] = P2;
+					ob.getBoard()[row][col] = P2;
 				}
 			}
 		}
@@ -460,8 +460,8 @@ public class OthelloBoard {
 		// Can't move to (4,4) since the square is not empty
 		System.out.println("Trying to move to (4,4) move=" + ob.move(4, 4, P2));
 
-		ob.board[4][4] = EMPTY;
-		ob.board[2][4] = EMPTY;
+		ob.getBoard()[4][4] = EMPTY;
+		ob.getBoard()[2][4] = EMPTY;
 
 		System.out.println(ob.toString());
 
@@ -475,5 +475,19 @@ public class OthelloBoard {
 		System.out.println("Trying to move to (4,4) move=" + ob.move(4, 4, P2));
 		System.out.println(ob.toString());
 
+	}
+
+	/**
+	 * @return the board
+	 */
+	public char[][] getBoard() {
+		return board;
+	}
+
+	/**
+	 * @param board the board to set
+	 */
+	public void setBoard(char[][] board) {
+		this.board = board;
 	}
 }
