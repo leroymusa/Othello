@@ -3,19 +3,67 @@ RandomVSRandom Report
 1) What is your conclusion, does the first or
 second player have some advantage, at least for a random strategy? 
 
+	Based on the results of multiple simulations, Player 2 (P2) 
+	appears to have a slight advantage over Player 1 (P1) when 
+	both players use a random strategy. The win probabilities 
+	for P2 consistently show a higher percentage across several 
+	trials, suggesting that even with randomness, some 
+	advantage exists for P2.
+
+
 2) Watch https://www.youtube.com/watch?v=Iq9DzN6mvYA
+
+
 
 3) Briefly write your thoughts on the above video below:
 
+	The video shows how coding-based simulations make statistical concepts more intuitive. 
+	It highlights methods like shuffling and bootstrapping to test hypotheses, 
+	offering an alternative to classical statistics. The focus is on using simulations 
+	to better understand data distributions and assess significance, 
+	making it simpler for those who think in code.
+
+
 4) H0 is 
+	Player 1 and Player 2 have equal chances of winning. 
+	In other words, there is no significant difference in the win probabilities between P1 and P2.
+
+
 
 5) Ha is 
+	Player 1 and Player 2 do not have equal chances of winning. 
+	This implies that one player has a higher win probability than the other.
+
+
 
 6) Choose one of the following and delete the other:
-   My experimental results support H0, so they do not support Ha
-   My experimental results do not support H0, so they support Ha
+   	My experimental results do not support H0, so they support Ha
+
+
 
 7) As in the video, use either math or code (add a Java Class) to argue for or against H0
+
+	Java Class: OthelloSimulation.java
+	
+	By running multiple simulations with random strategies for both players and calculating 
+	the win probabilities, the observed differences were evaluated using shuffling and 
+	randomization techniques. A p-value was derived from the simulation results, 
+	showing that the differences in win probabilities between P1 and P2 are 
+	statistically significant. Therefore, the null hypothesis (H0) is rejected.
+
+	/////////////////// ---> Code Sample runs: <--- /////////////////////
+
+	///		P1 (Random) Win Probability: 0.4653
+	///		P2 (Random) Win Probability: 0.4931
+	///		p-value: 0.005
+	///		Reject H0: The difference is statistically significant.
+
+	///		P1 (Random) Win Probability: 0.4503
+	///		P2 (Random) Win Probability: 0.5059
+	///		p-value: 0.0
+	///		Reject H0: The difference is statistically significant.
+
+	/////////////////// ---> Code Sample runs: <--- /////////////////////
 
 References: 
 https://www.thoughtco.com/null-hypothesis-vs-alternative-hypothesis-3126413
