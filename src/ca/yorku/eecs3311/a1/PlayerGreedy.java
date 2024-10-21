@@ -49,33 +49,42 @@ public class PlayerGreedy {
         int maxCount = -1;           // Store the maximum token count after any move
 
         // Iterate over all board cells
+        
         for (int row = 0; row < Othello.DIMENSION; row++) {          // Loop through each row
             for (int col = 0; col < Othello.DIMENSION; col++) {      // Loop through each column
                 
                 // Temporary board to simulate the move
+            	
                 OthelloBoard tempBoard = new OthelloBoard(Othello.DIMENSION);    
                 copyBoard(this.othello.game_board, tempBoard);       // Copy the current board state to tempBoard
 
                 // Check if the move is valid
+                
                 if (tempBoard.move(row, col, player)) {              // If move at (row, col) is valid for this player
                     int count = tempBoard.getCount(player);          // Get token count after this move
 
                     // If this move yields more tokens than previous best, update best move
+                    
                     if (count > maxCount) {                          
                         maxCount = count;                            // Update maxCount
                         bestMove = new Move(row, col);               // Update bestMove to current move
                     } 
+                    
                     // If move yields the same number of tokens as the best move, choose lexicographically smaller
+                    
                     else if (count == maxCount) {                    
                         if (bestMove == null ||                      // If no bestMove is set, or
                             row < bestMove.getRow() ||               // If current row is smaller, or
-                            (row == bestMove.getRow() && col < bestMove.getCol())) {  // If rows are equal and current column is smaller
+                            (row == bestMove.getRow() 				 // If rows are equal
+                            			&& 							 // and
+                            col < bestMove.getCol())) {  		 	 // current column is smaller
                             bestMove = new Move(row, col);           // Update bestMove to current move
                         }
                     }
                 }
             }
         }
+        
         return bestMove;                                               // Return the best move found
     }
 

@@ -74,11 +74,11 @@ public class OthelloControllerHumanVSGreedy {
      * Reports the final game state, including the final token counts and the winner.
      */
     private void reportFinal() {
-        String s = othello.getBoardString()                                 // Get the final board state
-                + OthelloBoard.P1 + ":" + othello.getCount(OthelloBoard.P1)  // Show Player 1's final token count
-                + " " + OthelloBoard.P2 + ":" + othello.getCount(OthelloBoard.P2) // Show Player 2's final token count
-                + "  " + othello.getWinner() + " won\n";                    // Announce the winner
-        System.out.println(s);                                              // Output the final game results
+        String s = othello.getBoardString()                                 		// Get the final board state
+                + OthelloBoard.P1 + ":" + othello.getCount(OthelloBoard.P1)  		// Show Player 1's final token count
+                + " " + OthelloBoard.P2 + ":" + othello.getCount(OthelloBoard.P2) 	// Show Player 2's final token count
+                + "  " + othello.getWinner() + " won\n";                    		// Announce the winner
+        System.out.println(s);                                              		// Output the final game results
     }
 
 	/**

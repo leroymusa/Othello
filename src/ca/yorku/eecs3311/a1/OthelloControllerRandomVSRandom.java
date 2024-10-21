@@ -23,37 +23,47 @@ public class OthelloControllerRandomVSRandom {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-        int p1wins = 0, p2wins = 0, draws = 0, numGames = 10000;
-        for (int i = 0; i < numGames; i++) {
-            Othello game = new Othello();
-            PlayerRandom player1 = new PlayerRandom(game, OthelloBoard.P1);
-            PlayerRandom player2 = new PlayerRandom(game, OthelloBoard.P2);
+	    int p1wins = 0, p2wins = 0, numGames = 10000;                          // Initialize win counters for P1, P2 and number of games
 
-            while (!game.isGameOver()) {
-           	 Move move = null;
-           	 char whosTurn = game.getWhosTurn();
-               if (whosTurn == OthelloBoard.P1)
-                 move = player1.getMove();
-               else 
-                 move = player2.getMove();
-               if (move != null)
-                   game.move(move.getRow(), move.getCol());
-               else 
-                   game.passTurn();
-           }
+	    // Simulate 10,000 games between two Random players (P1 and P2)
+	    
+	    for (int i = 0; i < numGames; i++) {
+	        Othello game = new Othello();                                       // Create a new Othello game instance
+	        PlayerRandom player1 = new PlayerRandom(game, OthelloBoard.P1);     // P1 is the Random player
+	        PlayerRandom player2 = new PlayerRandom(game, OthelloBoard.P2);     // P2 is also a Random player
 
-            char winner = game.getWinner();
-            if (winner == OthelloBoard.P1) {
-                p1wins++;
-            } else if (winner == OthelloBoard.P2) {
-                p2wins++;
-            } else {
-                draws++;  //Count draws if any
-            }
-        }
+	        // Play the game until it's over
+	        
+	        while (!game.isGameOver()) {
+	            Move move = null;                                               // Initialize move variable
+	            char whosTurn = game.getWhosTurn();                             // Determine whose turn it is
 
+	            if (whosTurn == OthelloBoard.P1) {                              // If it's P1's turn (Random)
+	                move = player1.getMove();                                   // Get move from Random player P1
+	            } else {                                                        // Else, it's P2's turn (Random)
+	                move = player2.getMove();                                   // Get move from Random player P2
+	            }
+
+	            if (move != null) {                                             // If a valid move is found
+	                game.move(move.getRow(), move.getCol());                    // Apply the move
+	            } else {
+	                game.passTurn();                                            // Pass the turn if no valid move is found
+	            }
+	        }
+
+	        // Determine the winner and update win counts
+	        
+	        char winner = game.getWinner();                                     // Get the winner of the game
+	        if (winner == OthelloBoard.P1) {                                    // If P1 wins, increment P1's win count
+	            p1wins++;
+	        } else if (winner == OthelloBoard.P2) {                             // If P2 wins, increment P2's win count
+	            p2wins++;
+	        }
+	    }
+	    
+	    
         System.out.println("Probability P1 wins=" + (float) p1wins / numGames);
         System.out.println("Probability P2 wins=" + (float) p2wins / numGames);
-        System.out.println("Probability of a draw=" + (float) draws / numGames);
+        //System.out.println(1-(float)(p1wins+p2wins)/numGames); //test for draw
     }
 }
